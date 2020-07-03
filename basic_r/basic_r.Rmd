@@ -1,0 +1,974 @@
+---
+title: "Dasar-Dasar Bahasa Pemrograman R"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+description: >
+  Belajar dasar-dasar bahasa pemrograman R dari mengenal data di R hingga melakukan operasi-operasi untuk menjawab masalah menggunakan R.
+---
+
+```{r setup, include=FALSE}
+if(!require(gradethis)) remotes::install_github("rstudio-education/gradethis")
+
+library(learnr)
+library(gradethis)
+
+knitr::opts_chunk$set(exercise.checker = gradethis::grade_learnr)
+```
+
+
+## Pendahuluan
+
+Dewasa ini tersedia banyak sekali software yang dapat digunakan untuk membantu kita dalam melakukan analisa data. software yang digunakan dapat berupa software berbayar atau gratis.
+
+`R` merupakan merupakan salah satu software gratis yang sangat populer di Indonesia. Kemudahan penggunaan serta banyaknya besarnya dukungan komunitas membuat `R` menjadi salah satu bahasa pemrograman paling populer di dunia.
+
+Paket yang disediakan untuk analisis statistika juga sangat lengkap dan terus bertambah setiap saat. Hal ini membuat `R` banyak digunakan oleh para analis data.
+
+Website ini merupakan bahan pembantu dalam proses belajar peserta workshop '**Dasar-Dasar Bahasa Pemrograman R**'. Website ini berikan tutorial interaktif dan sejumlah contoh kasus untuk membantu peserta belajar melakukan pemrograman menggunakan `R`.
+
+## R Sebagai Kalkulator
+
+> `R` dapat digunakan sebagai kalkulator
+
+R dapat digunakan untuk melakukan kegiatan hitung-berhitung. Hal ini disebabkan `R` memiliki sejumlah operator dan sejumlah fungsi matematika yang memungkinkan kegiatan berhitung atau komputasi dapat dilakukan di `R`.
+
+### Operator Aritmatika
+
+Sama seperti bahasa pemrograman pada umumnya, `R` memilki sejumlah operator matematika yang dapat digunakan untuk melakukan proses perhitungan. Urutan pengerjaan/operasi perhitungan pada `R` mengikuti kaidah yang ditampilkan pada pada tautan [berikut](https://www.tanahpengetahuan.com/2019/08/urutan-yang-benar-dalam-operasi-hitung.html).
+
+Berikut adalah tabel operator matematika yang ada pada `R`.
+
+**Simbol**     | **Keterangan**
+---------------|--------------------------------------------------------------------------------------
+`+`              | *Addition*, untuk operasi penjumlahan
+`-`              | *Substraction*, untuk operasi pengurangan
+`*`              | *Multiplication*, untuk operasi pembagian
+`/`              | *Division*, untuk operasi pembagian
+`^`              | *Eksponentiation*, untuk operasi pemangkatan
+`%%`             | *Modulus*, Untuk mencari sisa pembagian
+`%/%`            | *Integer*, Untuk mencari bilangan bulat hasil pembagian saja dan tanpa sisa pembagian
+
+
+### Fungsi Aritmatika
+
+Selain fungsi operator aritmetik, pada `R` juga telah tersedia fungsi aritmetik yang lain seperti logaritmik, ekponensial, trigonometri, dll.
+
+1. Logaritma dan eksponensial
+
+Untuk contoh fungsi logaritmik dan eksponensial jalankan sintaks berikut:
+
+```{r, eval=FALSE}
+log2(x) # logaritma basis 2 untuk x
+log10(x) # logaritma basis 10 untuk x
+log(x,y) # logaritma basis y untuk x
+exp(x) # eksponensial x
+```
+
+2. Fungsi trigonometri
+
+fungsi trigonometri yang ditampilkan seperti sin,cos, tan, dll.
+
+```{r, eval=FALSE}
+cos(x) # cos x
+sin(x) # Sin x
+tan(x) # Tan x
+acos(x) # arc-cos x
+asin(x) # arc-sin x
+atan(x) #arc-tan x
+```
+
+
+> **Penting!!!**
+>
+> x dalam fungsi trigonometri memiliki satuan radian
+
+3. Fungsi Hiperbolik
+
+fungsi hiperbolik yang tersedia antara lain:
+
+```{r, eval=FALSE}
+cosh(x) 
+sinh(x)
+tanh(x)
+acosh(x)
+asinh(x)
+atanh(x)
+```
+
+
+4. Fungsi matematik lainnya
+
+Fungsi lainnya yang dapat digunakan adalah fungsi absolut, akar kuadrat, dll. Berikut adalah contoh sintaks penggunaan fungsi absolut dan akar kuadrat.
+
+```{r, eval=FALSE}
+abs(-x) # nilai absolut -x
+sqrt(x) # akar kuadrat x
+```
+
+
+
+### Operator Relasi
+
+Operator relasi digunakan untuk membandingkan satu objek dengan objek lainnya. Operator yang disediakan `R` disajikan pada berikut:
+
+**Simbol**     | **Keterangan**           
+---------------|-----------------------------
+`>`            | Lebih besar dari
+`<`            | Lebih Kecil dari
+`==`           | Sama dengan
+`>=`           | Lebih besar sama dengan
+`<=`           | Lebih kecil sama dengan
+`!=`           | Tidak sama dengan
+
+
+> **Catatan:** hasil dari perbandingan dua buah nilai akan memberikan output data boolean, yaitu: TRUE atau FALSE.
+
+### Operator Logika {#logicoperators}
+
+Operator logika hanya berlaku pada vektor dengan tipe logical, numeric, atau complex. Semua angka bernilai 1 akan dianggap bernilai logika `TRUE`. Operator logika yang disediakan `R` dapat dilihat pada tabel berikut:
+
+|**Simbol**     | **Keterangan**           
+|---------------|----------------------------------
+|`&&`           | Operator logika AND
+|`||`           | Operator logika OR
+|`!`            | Opeartor logika NOT
+|`&`            | Operator logika AND element wise
+|`|`            | Operator logika OR element wise
+ 
+
+> **Penting!!!**
+>
+> - operator `&` dan `|` akan mengecek logika tiap elemen pada vektor secara berpesangan (sesuai urutan dari kiri ke kanan). 
+Operator `%%` dan `||` hanya mengecek dari kiri ke kanan pada 
+> - observasi pertama. Misal saat menggunakan && jika observasi pertama `TRUE` maka observasi pertama pada vektor lainnya akan dicek, namun jika observasi pertama `FALSE` maka proses akan segera dihentikan dan menghasilkan FALSE.
+
+### Latihan
+
+Gunakan konsol berikut untuk membantu kamu menjawab pertanyaan di bawah.
+
+```{r latihan-operator, exercise=TRUE}
+
+```
+
+```{r soal-operator, echo=FALSE}
+quiz(
+  question("Berapakah hasil yang diperoleh dari operasi berikut:2 + 10 %% 2 * (10+2) ?",
+    answer("2", correct = TRUE),
+    answer("5"),
+    answer("6"),
+    answer("1"),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("Bagaimana cara menuliskan logaritma basis 3 dari 81 dapat dituliskan ke dalam fungsi log()?",
+    answer("log(81, 3)", correct = TRUE),
+    answer("log(81)"),
+    answer("log(3, 81)"),
+    answer("log3(81)"),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("Pilihlah pernyataan yang benar!",
+    answer("10%%2 >= 3 akan menghasilkan output FALSE", correct = TRUE),
+    answer("10 = 3 akan memunculkan pesan FALSE"),
+    answer("2^4+3 akan menghasilkan nilai 10"),
+    answer("10 + 2 >= 32 & TRUE == FALSE akan menghasilkan output FALSE", correct = TRUE),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  )
+)
+
+```
+
+## Memasukkan Nilai Ke Dalam Variabel
+
+Terkadang kita perlu menyimpan data ke dalam sebuah objek sebelum dilakukan operasi. Terdapat 2 buah cara untuk melakukannya pada `R`, yaitu: *leftward assigment* (menyimpan data pada nama objek di sebelah kiri) dan *rightward assignment*.
+
+```{r, eval=FALSE}
+# simpan value ke dalam objek dengan nama x
+
+# leftward assignment
+x <- value
+x = value
+
+# rightward assignment
+value -> x
+```
+
+Terdapat beberapa hal yang perlu diperhatikan dalam menuliskan nama variabel pada `R`, antara lain:
+
+* menggunakan huruf besar atau kecil
+* dapat menggunakan tanda titik (.) atau garis bawah (_)
+* tidak menggunakan spasi
+* tidak dimulai dengan angka, titik, atau garis bawah
+
+> **Penting!!!**
+>
+> R bersifat *Case Sensitive*, misal: variabel dengan nama A tidak sama dengan variabel dengan nama a
+
+### Latihan
+
+**Pendahuluan**
+
+Bayangkan kamu diminta untuk menuliskan jumlah pada 3 buah keranjang. Jeruk yang terhitung pada tiap keranjang selanjutnya kamu catat terlebih dahulu  untuk mempermudahmu mengingat jumlah jeruknya. Misalkan pencatatan dilakukan pada `R`dan  nilai jumlah jeruk disimpan ke dalam objek dengan nama `keranjang_*`, dimana `*` merupakan nomor keranjang.
+
+Hasil perhitungan yang diperoleh pada masing-masing keranjang adalah sebagai berikut:
+
+* `keranjang_1` terdapat 100 jeruk,
+* `keranjang_2` terdapat 120 jeruk, dan
+* `keranjang_3` terdapat 50 jeruk
+
+Hitunglah jumlah total jeruk yang telah berhasil kamu hitung!
+
+**Langkah-Langkah Perhitungan**
+
+1. Buat variabel dengan nama `keranjang_*` (`*` adalah nomor keranjang) dan isi variabel tersebut dengan jumlah jeruk yang telah dihitung.
+2. Lakukan operasi penjumlahan dengan menggunakan operator penjumlahan. Tuliskan operasi penjumlahan dalam konsol dengan format `variabel_1 + variabel_2 + ...`
+
+```{r latihan-assigment, exercise=TRUE}
+
+```
+
+```{r latihan-assigment-solution}
+keranjang_1 <- 100
+keranjang_2 <- 120
+keranjang_3 <- 50
+
+keranjang_1 + keranjang_2 + keranjang_3
+```
+
+```{r latihan-assigment-check}
+grade_code("Wow! Kamu melakukannya dengan baik. Cukup sederhana bukan? kalau kamu cukup berani, lakukan tantangan lainnya pada tutorial ini")
+```
+
+## Jenis Data R
+
+Data pada `R` dapat dikelompokan berdasarkan beberapa tipe. Tipe data pada `R` disajikan pada berikut:
+
+**Tipe Data**  | **Contoh**              | **Keterangan**
+---------------|-------------------------|---------------------------------------------------------------------------------
+Logical        | TRUE, FALSE             | Nilai Boolean
+Numeric        | 12.3, 5, 999            | Segala jenis angka
+Integer        | 23L, 97L, 3L            | Bilangan integer (bilangan bulat)
+Character      | 'a', "b", "123"         | Karakter dan string
+Factor         | 1, 0, "Merah"           | Dapat berupa numerik atau string (namun pada proses akan terbaca sebagai angka)
+
+Untuk mengecek jenis data yang dimilki oleh sebuah objek, kita dapat menggunakan fungsi `class()`.
+
+Keenam jenis data tersebut disebut sebagai tipe data atomik. Hal ini disebabkan karena hanya dapat menangani satu tipe data saja. Misalnya hanya numeric atau hanya integer.
+
+Selain menggunakan fungsi `class()`, kita dapat pula menggunakan fungsi `is_numeric()`, `is.character()`, `is.logical()`, dan sebagainya berdasarkan jenis data apa yang ingin kita cek. Berbeda dengan fungsi `class()`, ouput yang dihasilkan pada fungsi seperti `is_numeric()` adalah nilai Boolean sehingga fungsi ini hanya digunakan untuk mengecek apakah jenis data pada objek sama seperti yang kita pikirkan.
+
+Konversi antar jenis data dapat dilakukan dengan menggunakan fungsi `as_*()` (`*` adalah jenis data tujuan konversi).
+
+> **Penting!!!**
+>
+> Tidak semua jenis data dapat dilakukan konversi satu sama lain.
+
+### Latihan 
+
+Tiga buah objek (variabel) telah dimuat dalam sesi `R`, yaitu: `num`, `char`, dan `int`. Lakukan pengecekan terhadap jenis data ketiga objek tersebut!
+
+```{r prepare-asigment}
+num <- 3
+char <- "saya"
+int <- 1L
+```
+
+```{r latihan-data-type, exercise=TRUE, exercise.setup = "prepare-asigment"}
+
+```
+
+```{r latihan-data-type-solution}
+class(num)
+class(char)
+class(int)
+```
+
+```{r latihan-data-type-check}
+grade_code("Wow! Kamu melakukannya dengan baik. Ingat latihan ini cukup mudah. Jangan mengintip jawaban ya?")
+```
+
+## Strutur Data R
+
+
+Struktur data diklasifikasikan berdasarkan dimensi data dan tipe data di dalamnya (homogen atau heterogen). Klasifikasi jenis data disajikan pada tabel berikut:
+
+**Dimensi**  | **Homogen**      | **Heterogen**
+-------------|------------------|---------------
+1d           | Atomik vector    | List
+2d           | Matrix           | Dataframe
+nd           | Array            |               
+
+Berdasarkan tabel tersebut dapat kita lihat bahwa objek terbagi atas dua buah struktur data yaitu homogen dan heterogen. Objek dengan struktur data homogen hanya dapat menyimpan satu tipe atau jenis data saja (numerik saja atau factor saja), sedangkan objek dengan struktur data heterogen akan dapat menyimpan berbagai jenis data. 
+
+### Membuat Objek dengan Struktur Data Tertentu
+
+Tabel berikut menampilkan ringkasan fungsi yang digunakan untuk membentuk sebuah struktur data dan contoh penerapannya.
+
+**Data**     | **fungsi**     | **Contoh**
+-------------|----------------|---------------------------------------------------------
+Vector       | `c()`          | `x <- c("saya", "ayah", "ibu")`  
+Matrix       | `matrix()`     | `x <- matrix(1:10, nrow=5, ncol2)`
+List         | `list()`       | `x <- list(a = 10, b = 1:3, c = "saya")`
+Dataframe    | `data.frame()` | `x <- data.frame(a = 1:3, b = 3:5, c = c("a","b","c"))`
+
+Untuk mengecek struktur sebuah objek, kita dapat menggunakan fungsi `class()`
+
+### Melakukan Subset Pada Sebuah Struktur Data
+
+terdapat 3 buah cara untuk mengambil sebagian elemen atau melakukan subset pada suatu struktur data pada `R`, antara lain:
+
+1. **Menggunakan tanda `$`**. Tanda `$` digunakan untuk mengambil elemen objek berdasarkan nama elemen atau nama kolom, misal : `x$a` (mengambil elemen objek `x` dengan `nama`). Jika sebuah objek berupa dataframe maka subset menggunakan cara tersebut akan menghasilkan vector, sedangkan jika objek berupa list maka cara tersebut akan menghasilkan jenis data elemen list yang terambil (tidak menghasilkan list).
+2. **Menggunakan tanda `[[]]`**. Tanda `[[]]` digunakan untuk mengambil elemen objek dengan nama elemen atau nomor indeks lokasi elemen berada, misal: `x[[1]]` (mengambil elemen objek `x` yang berada pada indeks 1) atau `x[["a"]]` (mengambil elemen objek `x` dengan nama elemen `a`). Jika sebuah objek berupa dataframe maka subset menggunakan cara tersebut akan menghasilkan vector, sedangkan jika objek berupa list maka cara tersebut akan menghasilkan jenis data elemen list yang terambil (tidak menghasilkan list).
+3. **Menggunakan tanda `[]`**. Tanda `[]` digunakan untuk mengambil elemen objek dengan nama elemen atau nomor indeks lokasi elemen berada, misal: `x[1]` (mengambil elemen objek `x` yang berada pada indeks 1) atau `x["a"]` (mengambil elemen objek `x` dengan nama elemen `a`). Berbeda dengan subset menggunakan tanda `[[]]`, subset menggunakan tanda `[]` tidak merubah struktur objek yang disubset, misal: subset pada dataframe menggunakan tanda `[]` tidak akan menghasilkan vector. Jika struktur data berupa dataframe atau matriks, subset dilakukan dengan menspesifikasikan lokasi baris dan kolom yang akan diambil, misal: `x[1,2]` (ambil elemen objek yang berada pada baris ke-1 dan kolom ke-2). Subset dengan tanda `[]` dapat dikombinasikan dengan `[[]]`, jika digunakan dengan struktur data list, misal: `x[[1]][2,1]` (mengambil elemen objek `x` ke-1 yang terletak pada baris ke-2 dan kolom ke-1).
+
+```{r subset, exercise=TRUE, exercise.lines=15}
+# membuat dataframe
+df <- data.frame(
+  num1 = c(1,3,4),
+  char = c("saya", "ayah", "ibu"),
+  num2 = c(10, 11, 12),
+  # jangan lakukan konversi ke factor data pada jenis data string
+  stringsAsFactors = FALSE)
+
+# membuat list
+lst <- list(num = 1:3,
+            dataframe = df,
+            mat = matrix(1:10, nrow = 5, ncol = 2))
+
+# membuat atomic vector
+vc <- c("apel", "durian", "rambutan")
+
+# subset $
+df$num1 # ambil nilai kolom num1
+lst$num # ambil nilai elemen dengan nama num
+
+# subset [[]]
+df[["char"]] # ambil nilai kolom char
+lst[["dataframe"]] # ambil elemen dengan nama dataframe
+
+# subset []
+df[1, c("num2")] # ambil elemen pada baris ke-1 dan kolom num2
+lst[[2]][1,3] # ambil nilai pada baris ke-1 dan kolom ke-3 pada elemen list ke-2 
+vc[1] # ambil elemen vector ke-1
+```
+
+> **Catatan:** kamu dapat membuat objek sendiri dengan struktur data berbeda dan melakukan subset terhadap objek yang telah kamu buat
+
+### Menambahkan Elemen Data
+
+Elemen sebuah objek dengan struktur data tertentu dapat dilakukan modifikasi nilai elemen yang telah ada atau ditambahkan dengan elemen baru pada objek tersebut. Berikut adalah contoh penerapan modifikasi tersebut:
+
+```{r add-elemen, exercise=TRUE}
+# membuat dataframe
+x <- data.frame(
+  num1 = c(1,3,4),
+  char = c("saya", "ayah", "ibu"),
+  num2 = c(10, 11, 12),
+  # jangan lakukan konversi ke factor data pada jenis data string
+  stringsAsFactors = FALSE)
+
+# merubah nilai kolom num2
+x$num2 <- c(5,6,7)
+
+# buat kolom baru dengan nama num3 yang merupakan hasil penjumlahan num1 + num2
+x$num3 <- x$num1 + x$num2
+
+# cetak hasil modifikasi
+x
+```
+
+
+> **Catatan:** kamu dapat membuat objek sendiri dengan struktur data berbeda dan melakukan modifikasi terhadap objek yang telah kamu buat
+
+### Latihan
+
+#### 1. Daftar Barang Belanja
+
+**Pendahuluan**
+
+Misalkan kamu diminta untuk berbelanja oleh keluargamu. Agar tidak lupa dengan barang yang perlu dibeli, kamu menyusun daftar barang yang dibeli ke dalam sebuah tabel berikut:
+
+**Barang** | **Jumlah** | **Harga Satuan**
+-----------|------------|-----------------------------
+"apel"     | 10         | 1000
+"telur"    | 12         | 1200
+"ikan"     | 3          | 10000
+
+Susunlah tabel tersebut ke dalam sebuah variabel `R` dengan nama `daftar_belaja` dan buatlah sebuah kolom baru dengan nama `Harga` yang menampilkan harga total pembelian masing-masing item!
+
+**Langkah-Langkah Perhitungan**
+
+1. Membuat dataframe dengan nama `daftar_belanja` menggunakan fungsi `data.frame()`
+2. Menghitung total belanja dengan cara mengalikan nilai kolom `Barang` dengan nilai kolom `Harga Satuan` dan menyimpannya pada kolom dengan nama `Harga`.
+
+```{r latihan-data-structure1, exercise=TRUE}
+# ganti tanda ___ dengan nilai yang sesuai
+daftar_harga <- ___(
+  barang = ___,
+  jumlah = ___,
+  harga_satuan = ___,
+  stringsAsFactors = FALSE
+)
+```
+
+```{r latihan-data-structure1-solution}
+daftar_harga <- data.frame(
+  barang = c("apel", "telur", "ikan"),
+  jumlah = c(10, 12, 3),
+  harga_satuan = c(1000, 1200, 10000),
+  stringsAsFactors = FALSE
+)
+
+# atau
+x1 <- c("apel", "telur", "ikan")
+x2 <- c(10, 12, 3)
+x3 <- c(1000, 1200, 10000)
+
+daftar_harga <- data.frame(
+  barang = x1,
+  jumlah = x2,
+  harga_satuan = x3,
+  stringsAsFactors = FALSE
+)
+```
+
+```{r latihan-data-structure1-check}
+grade_code("Kamu melakukannya dengan baik. Tapi ingat jika kamu diminta berbelanja tuliskan pesanannya di kertas karena kamu tidak akan sempat membuka programmu di depan penjual barang-barang kebutuhannmu")
+```
+
+#### 2. Menebak Jenis Data Sebuah Vector
+
+**Pendahuluan**
+
+Vector merupakan sebuah struktur data dengan jenis data elemennya yang seragam. Konversi jenis data akan dilakukan apabila saat kita akan membentuk sebuah vector, kita mengisikan jenis data yang berbeda pada sebuah vector. Konversi akan dilakukan dengan mengubah setiap elemen vector ke jenis data yang paling flexibel. Contoh : `c(1, TRUE, "a")` akan membentuk vector dengan jenis data string atau karakter.
+
+Konversi jenis data juga sering terjadi secara otomatis pada operasi matematis vector. Sebagian besar fungsi atau operator matematika (`+`, `log()`, `abs()`, dll) akan mengkonversi jenis data vector menjadi `numeric (double)` atau `integer`, dan sebagian besar operator logika (`&`, `|`, dll) akan mengkonversi jenis data vector menjadi logical.
+
+Gunakan konsol berikut untuk membantumu menjawab pertanyaan yang diberikan.
+
+```{r latihan-data-structure2, exercise=TRUE}
+
+```
+
+```{r soal-data-structure, echo=FALSE}
+quiz(
+  question("Jenis data apa yang terbentuk pada pembuatan vector c(TRUE, FALSE, 1L)",
+    answer("integer", correct = TRUE),
+    answer("logical"),
+    answer("character"),
+    answer("numeric"),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("Jenis data apa yang terbentuk pada operasi vector log(c(1, 2, 3L))?",
+    answer("numeric", correct = TRUE),
+    answer("integer"),
+    answer("character"),
+    answer("logical"),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  ),
+  question("Jenis data apa yang terbentuk pada operasi vector c(1, 12, 0) & c(TRUE, FALSE, 1)",
+    answer("character"),
+    answer("integer"),
+    answer("numeric"),
+    answer("logical", correct = TRUE),
+    allow_retry = TRUE,
+    random_answer_order = TRUE
+  )
+)
+
+```
+
+## Membuat Deret Angka
+
+Secara sederhana vektor merupakan deret angka. Vektor bisa jadi berupa data yang kita miliki atau sengaja kita buat untuk tujuan simulasi matematika. Urutan angka-angka ini bisa memiliki interval konstan, contoh: titik waktu pada analisis reaksi kimia, atau dapat pula intervalnya bersifat acak seperti pada simulasi Monte Carlo.
+
+### Regular Sequences
+
+Operator colon (“:”) dapat digunakan untuk membuat sequence vector. Operator tersebut berfungsi sebagai pemisah antara nilai awal dan akhir deret bilangan. Interval nilai sequence yang terbentuk adalah `. Berikut adalah contoh bagaimana cara membuat sequence vector menggunakan operator colon:
+
+```{r reg-sequence1, exercise=TRUE}
+# cetak deret angka 1 sampai 10
+1:10
+
+# cetak deret angka 10 sampai -1
+10:-1
+```
+
+Jika kita menginginkan interval angka selain 1, kita dapat menggunakan fungsi `seq()`.
+
+```{r reg-sequence2, exercise=TRUE}
+# cetak angka 1 sampai 10 dengan interval 0.1
+seq(from = 1, to = 10, by = 0.1)
+```
+
+### Nilai Berulang
+
+Fungsi `rep()` dapat digunakan untuk membuat deret angka dengan nilai berulang.
+
+```{r repeat, exercise=TRUE}
+# cetak angka 1 sebanyak 5 kali
+rep(x = 1, times = 5)
+```
+
+### Deret Bilangan Acak
+
+Deret bilangan acak biasanya banyak digunakan dalam sebuah simulasi. R menyediakan fungsi untuk memproduksi bilangan-bilangan acak tersebut berdasarkan distribusi tertentu. Berikut adalah tabel rangkuman nama distribusi, fungsi, dan argumen yang digunakan:
+
+**Distribusi**   | **Fungsi**                                   | **Argumen**
+---------------- |----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------
+Beta             | `rbeta(n, shape1, shape2, ncp = 0)`          | `n` = jumlah observasi; `shape1,shape2` = parameter non-negatif distribusi beta; `ncp` = *non-centrality parameter*
+Binomial         | `rbinom(n, size, prob)`                      | `n`= jumlah observasi; `prob` = probabilitas sukses; `size` = jumlah percobaan
+Cauchy           | `rcauchy(n, location = 0, scale = 1)`        | `n` = jumlah observasi; `location, scale` =  parameter lokasi dan skala distribusi Cauchy
+Chi-Square       | `rchisq(n, df, ncp = 0)`                     | `n` = jumlah observasi; `df` = derajat kebebasan; `ncp` = *non-centrality parameter*
+Exponensial      | `rexp(n, rate = 1)`                          | `n` = jumlah observasi; `rate` = vektor parameter *rate*
+F                | `rf(n, df1, df2, ncp)`                       | `n` = jumlah observasi; `df1, df2` = derajat kebebasan; `ncp` = *non-centrality parameter*
+Gamma            | `rgamma(n, shape, rate = 1, scale = 1/rate)` | `n` = jumlah observasi; `shape, scale` = parameter *shape* dan *scale*; `rate` = alternatif lain argumen `rate`
+Geometri         | `rgeom(n, prob)`                             | `n` = jumlah observasi; `prob` = probabilitas sukses
+Hipergeometri    | `rhyper(nn, m, n, k)`                        | `nn` = jumlah observasi; `m` = jumlah bola putih dalam wadah; `n` = jumlah bola hitam dalam wadah; `k` = jumlah pengambilan
+Log-normal       | `rlnorm(n, meanlog = 0, sdlog = 1)`          | `n` = jumlah observasi; `meanlog, sdlog` = nilai mean dan simpangan baku dalam skala logaritmik
+Negatif Binomial | `rnbinom(n, size, prob, mu)`                 | `n` = jumlah observasi; `size` = target jumlah percobaan sukses pertama kali; `prob` = probabilitas sukses; `mu` = parameterisasi alternatif melalui mean
+Normal           | `rnorm(n, mean = 0, sd = 1)`                 | `n` = jumlah observasi; `mead, sd` = nilai mean dan simpangan baku
+Poisson          | `rpois(n, lambda)`                           | `n` = jumlah observasi; `lambda` = vektor nilai mean
+Student t        | `rt(n, df, ncp)`                             | `n` = jumlah observasi; `df` = derajat kebebasan; `ncp` = *non-centrality parameter*
+Uniform          | `runif(n, min = 0, max = 1)`                 | `n` = jumlah observasi; `min, max` = nilai maksimum dan minimum distribusi
+Weibull          | `rweibull(n, shape, scale = 1)`              | `n` = jumlah observasi; `shape, scale` = parameter *shape* dan *scale*
+
+Berikut adalah contoh produksi 5 buah angka yang diambil dari distribusi normal dengan nilai mean 0 dan simpangan baku 1:
+
+```{r acak, exercise=TRUE}
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+## Control Flow 
+
+Terdapat 2 alat untuk melakukan proses control flow, yaitu: *choices* dan *loop*. *Choices*, seperti statement `if ... else ...` memungkinkan kita untuk menjalankan sintaks berbeda sesuai dengan input data yang diberikan. *Loop*, seperti `for` dan `while` memungkinkan kita untuk menjalankan suatu sintaks berulang-ulang.
+
+### Choices
+
+Bentuk dasar dari statemen `if` di `R` dapat dituliskan sebagi berikut:
+
+```{r, eval=FALSE}
+if (condition) true_action
+if (condition) true_action else false_action
+```
+
+Jika `condition` bernilai `TRUE`, maka `true_action` yang dijalankan. Sedangkan jika `condition` bernilai `FALSE`, maka opsi `false_action` yang dijalankan.
+
+```{r choices, exercise=TRUE}
+# membuat vector
+x <- c("Andi","Iwan", "Adi")
+
+if("Rina" %in% x){
+  
+  print("Rina ditemukan")
+  
+} else if("Adi" %in% x){
+  
+  print("Adi ditemukan")
+  
+} else{
+  
+  print("tidak ada yang ditemukan")
+}
+```
+
+> **Catatan:** cobalah bereksperimen dengan program yang kamu buat
+
+### Loops
+
+*Loop* merupakan kode program yang berulang-ulang. Loop berguna saat kita ingin melakukan sebuah perintah yang perlu dijalankan berulang-ulang seperti melakukan perhitungan maupaun melakukan visualisasi terhadap banyak variabel secara serentak. Hal ini tentu saja membantu kita karena kita tidak perlu menulis sejumlah sintaks yang berulang-ulang. Kita hanya perlu mengatur statemen berdasarkan hasil yang kita harapkan.
+
+#### For Loop
+
+Mengulangi sebuah statement atau sekelompok statement sebanyak nilai yang ditentukan di awal. Jadi operasi akan terus dilakukan sampai dengan jumlah yang telah ditetapkan di awal atau dengan kata lain tes kondisi (Jika jumlah pengulangan telah cukup) hanya akan dilakukan di akhir. Secara sederhana bentuk dari for loop dapat dituliskan sebagai berikut:
+
+```{r, eval=FALSE}
+for (value in vector){
+  statements
+}
+```
+
+Berikut adalah contoh penerapan *for loop*
+
+```{r, forloop, exercise=TRUE}
+vector <- c(1:5)
+
+# loop
+for(i in seq_along(vector)){
+  print(i)
+}
+```
+
+*Loop* akan dimulai dari blok statemen `for` sampai dengan `print(i)`. Berdasarkan *loop* pada contoh tersebut, *loop* hanya dilakukan sebanyak 5 kali sesuai dengan jumlah elemen vektor yang ada.
+
+#### While Loop
+
+*While loop* merupakan loop yang digunakan ketika kita telah menetapkan stop condition sebelumnya. Blok statemen yang sama akan terus dijalankan sampai *stop condition* ini tercapai. *Stop condition* akan di cek sebelum melakukan proses loop. Berikut adalah pola dari *while loop* dapat dituliskan sebagai berikut:
+
+```{r, eval=FALSE}
+while (test_expression){
+  statement
+}
+```
+
+Berikut adalah contoh penerapan *while loop*:
+
+```{r, whileloop, exercise=TRUE}
+coba <- c("Contoh")
+counter <- 1
+
+# loop
+while (counter<5){
+  # print vektor
+  print(coba)
+  # tambahkan nilai counter sehingga proses terus berlangsung sampai counter = 5 
+  counter <- counter + 1
+}
+```
+
+*Loop* akan dimulai dari blok statemen `while` sampai dengan `counter <- 1`. *Loop* hanya akan dilakukan sepanjang nilai `counter < 5`.
+
+### Break dan Next
+
+`break` dan `next` merupakan statemen yang dapat ditambahkan pada operasi *control flow*. Kedua statemen tersebut akan mempengaruhi proses eksekusi sintaks. *break* akan menghantikan seluruh *loop* apabila sebuah kondisi tercapai. Sedangkan *next*, tidak akan mengeksekusi sintaks yang memenuhi kondisi yang ditetapkan dan akan menjalankan sintaks setelahnya (meloncati sebuah step eksekusi).
+
+Berikut adalah contoh penerapannya:
+
+
+```{r, breaknext, exercise=TRUE}
+x <- 1
+
+while(x > 0){
+  x <- x + 1
+  if(x %% 2 == 0){
+    next
+    
+  }else if(x > 10){
+    break
+    
+  }else{
+    print(x)
+    
+  }
+}
+```
+
+### Latihan
+
+#### 1. Program Pengecek Bilangan Ganjil dan Genap
+
+**Pendahuluan**
+
+Bilangan genap adalah bilangan yang habis dibagi 2, sedangkan bilangan ganjil adalah bilangan yang tidak habis dibagi 2.
+
+**Langkah-Langkah Pengerjaan**
+
+1. Buat sebuah variabel dengan nama `num` yang menyimpan bilangan yang akan dicek.
+2. Buat statemen `if ... else ...` untuk mengecek nilai variabel `num`.
+
++ jika `num %% 2 == 0`, cetak "`num` adalah bilangan genap "
++ Sebaliknya, cetak "`num` adalah bilangan ganjil"
+
+```{r latihan-controlflow1, exercise=TRUE, exercise.lines=15}
+
+```
+
+```{r latihan-controlflow1-solution}
+if(num %% 2 == 0){
+  print(paste(num, "adalah bilangan genap"))
+}else{
+  print(paste(num, "adalah bilangan ganjil"))
+}
+```
+
+```{r latihan-controlflow1-check}
+grade_code("Tetap semangat untuk mengambil tantangan selanjutnya")
+```
+
+#### 2. Program untuk Mengecek Tahun Kabisat dan Bukan
+
+**Pendahuluan**
+
+Tahun kabisat merupakan tahun dimana jumlah hari dalam setahunnya 366 hari atau pada tahun tersebut terdapat 29 hari di bulan Februari. Tahun kabisat hanya terjadi setiap 4 tahun sekali. Tahun kabisat memiliki ciri-ciri seperti berikut:
+  
+- angka tahun dapat dibagi dengan 4
+- angka tahun tidak dapat dibagi dengan 100
+- angka tahun tidak dapat dibagi dengan 400
+- mulai diperkenalkan sejak 1582 atau sejak kalender Gregorian diperkenalkan
+
+**Langkah-Langkah Pengerjaan**
+
+1. Buat sebuah variabel dengan nama `tahun` dan inputkan tahun yang akan di cek.
+2. buatlah statemen `if ... else ...` untuk mengecek apakah periode tahun dalam variabel `tahun` berada pada periode kalender Gregorian.
+3. buatlah statemen `if ... else ...` di dalam statemen `if ... else ...` yang telah dibuat pada poin ke-2. Statemen `if ... else ...` bertujuan untuk mengecek apakah nilai variabel `tahun` merupakan memenuhi kriteria tahun kabisat atau bukan menggunakan kondisi yang telah dijelaskan dalam pendahuluan soal.
+
+**Input dan Output**
+
+* input = `1580`, output = `bukan dalam periode kalender Gregorian`
+* input = `1982`, output = `tahun kabisat`
+* input = `2000`, output = `bukan tahun kabisat` 
+
+```{r latihan-controlflow2, exercise=TRUE, exercise.lines=20}
+tahun <- ___
+
+if(tahun > ___){
+  if(tahun %% ___){
+    print("bukan tahun kabisat")
+  }else if(tahun %% ___){
+    print("tahun kabisat")
+  }else if(tahun %% ___){
+    print("tahun kabisat")
+  }
+}else{
+  print("bukan dalam periode kalender Gregorian")
+}
+```
+
+```{r latihan-controlflow2-solution}
+if(tahun > 1580){
+  if(tahun %% 4 == 0){
+    print("bukan tahun kabisat")
+  }else if(tahun %% 100){
+    print("tahun kabisat")
+  }else if(tahun %% 400 == 0){
+    print("tahun kabisat")
+  }
+}else{
+  print("bukan dalam periode kalender Gregorian")
+}
+```
+
+```{r latihan-controlflow2-check}
+grade_code("Wow! Kamu melakukannya dengan baik. Kamu berhasil menyelesaikan sebuah tantangan besar dari workshop ini")
+```
+
+
+#### 3. Program untuk Mencari Nilai Faktorial dari Sebuah Angka
+
+**Pendahuluan**
+
+Nilai faktorial sebuah angka merupakan hasil perkalian dari seluruh integer dari angka 1 sampai dengan angka yang dimaksudkan. Contoh: faktorial dari 3 (ditulis 3!) adalah `1*2*3 = 6`.
+
+Nilai faktorial hanya berlaku pada bilangan positif dan nilai faktorial dari 0 (0!) adalah 1.
+
+**Langkah-Langkah Pengerjaan**
+
+1. Buat sebuah variabel dengan nama `num` untuk menyimpan angka yang akan dicari nilai faktorialnya.
+2. Buat sebuah ariabel dengan nama `factorial` yang berisikan nilai `1`.
+3. Buatlah statemen `if ... else ...` untuk mengecek apakah nilai yang diinputkan pada variabel `num` adalah positif
+
++ jika nilai yang diinputkan `num < 0`, cetak pesan "maaf nilai faktorial tidak tersedia untuk bilangan negatif".
++ jika nilai yang diinputkan `num = 0`, cetak "nilai faktorial dari 0 adalah 1".
++ jika nilai yang diinputkan `num > 0` atau pada statemen `else`, buatlah sebuah * loop* yang akan memperbaharui variabel `factorial` dengan hasil kali variabel `factorial` dengan indeks *loop* (contoh: `i`) sampai dengan nilai `i = num` dan cetak nilai faktorial dari variabel `num` dengan pesan "faktorial dari `num` adalah `factorial`" 
+
+**Input dan Output**
+
+* input = `-1`, output = `maaf nilai faktorial tidak tersedia untuk bilangan negatif`
+* input = `0`, output = `nilai faktorial dari 0 adalah 1`
+* input = `5`, output = `faktorial dari 5 adalah 120`
+* input = `5`, output = `faktorial dari 5 adalah 3628800`
+
+
+```{r latihan-controlflow3, exercise=TRUE, exercise.lines=20}
+num <- ___
+factorial <- 1
+
+if(num < ___){
+  print("___")
+  
+} else if(num == ___){
+  print("___")
+  
+} else {
+  for(i in ___){
+    factorial = factorial * i
+  }
+  print(paste("___", num ,"___",factorial))
+}
+```
+
+```{r latihan-controlflow3-solution}
+if(num < 0){
+  print("maaf nilai faktorial tidak tersedia untuk bilangan negatif")
+  
+} else if(num == 0){
+  print("nilai faktorial dari 0 adalah 1")
+  
+} else {
+  for(i in 1:num){
+    factorial = factorial * i
+  }
+  print(paste("nilai faktorial dari", num ,"adalah",factorial))
+}
+```
+
+```{r latihan-controlflow3-check}
+grade_code("Kamulah sang penakluk tantangan, hebat!!! Lakukan lagi!!!")
+```
+
+
+#### 4. Program untuk Mencetak Deret Fibbonaci
+
+**Pendahuluan**
+
+deret fibonaci merupakan deret dimana suku ke 1 dan ke 2 secara berurutan adalah 0 dan 1, sedangkan suku berikutnya merupakan hasil penjumlahan 2 suku di depannya.
+
+**Langkah-Langkah Perhitungan**
+
+1. Buat sebuah variabel dengan nama `n_suku` yang menyimpan jumlah suku yang akan ditampilkan di layar
+2. Buat tiga buah variabel pembantu, yaitu: `n1`, `n2`, dan `count`, dimana `n1` dan `n2` merupakan suku ke-1 dan ke-2 deret fibonacci. Berikan masing-masing nilai pada ketiga variabel tersebut secara berurutan 0, 1 dan 3. Buat sebuah statemen `if ... else ...` untuk mengecek apakah nilai  `n_suku` > 0.
+
+* jika `n_suku <= 0`, cetak "Stop, n_suku harus bilangan integer positif"
+* sebaliknya, buat sebuah statemen `if ... else ...` untuk mencetak deret fibonacci dengan ketentuan,
+
+  + jika `n_suku == 1`, cetak "Deret Fibonacci: `n1`"
+  + sebaliknya, cetak "Deret Fibonacci", `n1`, `n2` dan buat *while loop* untuk mencetak suku ke-3 sampai dengan suku ke-`n_suku`, dimana nilai suku selanjutnya adalah hasil penjumlahan 2 suku sebelumnya.
+
+```{r latihan-controlflow4, exercise=TRUE, exercise.lines=20}
+n_suku <- ___
+# suku pertama dan kedua
+n1 <- 0
+n2 <- 1
+count <- 2
+# cek apakah n_suku merupakan bilangan positif
+if(n_suku <= ___) {
+  print("Stop, n_suku harus bilangan integer positif")
+} else {
+  if(n_suku == ___) {
+    print("Deret Fibonacci:")
+    print(n1)
+  } else {
+    print("Deret Fibonacci:")
+    print(n1)
+    print(n2)
+    while(count < ___) {
+      nth = n1 + n2
+      print(nth)
+      # update values
+      n1 = ___
+      n2 = ___
+      count = ___
+    }
+  }
+}
+```
+
+```{r latihan-controlflow4-solution}
+n1 <- 0
+n2 <- 1
+count <- 2
+# cek apakah n_suku merupakan bilangan positif
+if(n_suku <= 0) {
+  print("Stop, n_suku harus bilangan integer positif")
+} else {
+  if(n_suku == 1) {
+    print("Deret Fibonacci:")
+    print(n1)
+  } else {
+    print("Deret Fibonacci:")
+    print(n1)
+    print(n2)
+    while(count < n_suku) {
+      nth = n1 + n2
+      print(nth)
+      # update values
+      n1 = n2
+      n2 = nth
+      count = count + 1
+    }
+  }
+}
+```
+
+```{r latihan-controlflow4-check}
+grade_code("Kamu telah berhasil meningkatkan level pemrogramanmu dengan R")
+```
+
+## Operasi Tervectorisasi
+
+Sebagian besar operasi atau fungsi pada R dilakukan secara vector atau tervectorisasi. Pada operasi tervectorisasi operasi dilakukan secara parallel pada objek tertentu, dimana operasi tidak dilakukan berdasarkan tipe objek tunggal secara satu- persatu, tapi dilakukan melalui satu set nilai (vector) pada satu waktu.
+
+Penggunaan fungsi tervectorisasi sangat dianjurkan pada R untuk efisiensi operasi. Adapun keuntungan penggunaan fungsi tervectorisasi, antara lain:
+
+* Sintaks dapat berjalan lebih efisien (lebih cepat)
+* Sintaks menjadi ringkas
+* Sintaks mudah dibaca
+
+### Operasi yang Tidak Tervectorisasi
+
+Pada poperasi yang tidak tervectorisasi, operasi dilakukan satu persatu, sebagai contoh berikut ditampilkan operasi untuk menjumlahkan dua buah vector:
+
+```{r unvec, exercise=TRUE}
+x <- 1:4
+y <- 6:9
+
+# jumlahkan x dan y 
+z <- c()
+
+for(i in seq_along(x) ){
+	z[i] <- x[i] + y[i]
+}
+
+z
+```
+
+### Operasi Tervectorisasi
+
+Berbeda dengan operasi yang tidak tervectorisasi, sintaks operasi tervectorisasi lebih ringkas dan mudah untuk dibaca. Berikut adalah contoh operasi untuk menjumlahkan dua buah vector secara tervectorisasi:
+
+```{r vec, exercise=TRUE}
+x <- 1:4
+y <- 6:9
+
+# jumlahkan x dan y 
+z <- x + y
+
+z
+```
+
+### Operasi Tervectorisasi vs Operasi Tidak Tervectorisasi
+
+Operasi tervectorisasi akan berlangsung lebih cepat dibandingkan yang tidak tervectorisasi. Sebagai contoh berikut ditampilkan sebuah sintaks untuk mengukur waktu running dari penjumlahan elemen vector:
+
+```{r vecvsunvec, exercise=TRUE}
+# unvectorised
+start_time <- Sys.time()
+
+x <- 1:100000000
+sum <- 0
+
+for(i in x){
+  sum <- sum + i
+}
+
+sum
+
+end_time <- Sys.time()
+
+print(paste("Waktu Operasi Tidak Tervectorisasi:",(end_time - start_time)))
+
+# vectorised
+start_time <- Sys.time()
+
+x <- 1:100000000
+
+sum(x)
+
+end_time <- Sys.time()
+
+print(paste("Waktu Operasi Tervectorisasi:",(end_time - start_time)))
+```
+
+> **Penting!!!**
+>
+> jika memungkinkan hindari proses loop untuk mempercepat operasi pada R. Gunakan fungsi yang sudah tersedia pada R baik pada paket bawaan maupun dari paket yang ada
+
+
+

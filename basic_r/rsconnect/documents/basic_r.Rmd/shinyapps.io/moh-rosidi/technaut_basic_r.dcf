@@ -1,0 +1,12 @@
+name: technaut_basic_r
+title: technaut_basic_r
+username:
+account: moh-rosidi
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2532097
+bundleId: 3347148
+url: https://moh-rosidi.shinyapps.io/technaut_basic_r/
+when: 1593762714.06808
+asMultiple: FALSE
+asStatic: FALSE
